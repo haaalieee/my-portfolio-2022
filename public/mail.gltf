@@ -1,0 +1,401 @@
+{
+  "accessors": [
+    {
+      "componentType": 5125,
+      "count": 120,
+      "max": [
+        47
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "componentType": 5126,
+      "count": 48,
+      "max": [
+        1.007843137254902,
+        1.007843137254902,
+        1.007843137254902
+      ],
+      "min": [
+        -1.007843137254902,
+        -1.007843137254902,
+        -1.007843137254902
+      ],
+      "type": "VEC3"
+    },
+    {
+      "componentType": 5126,
+      "count": 48,
+      "max": [
+        1.0009770395701025,
+        1.0009770395701025,
+        0.0012263848951780676
+      ],
+      "min": [
+        -1.0009770395701025,
+        -1.0009770395701025,
+        -0.03394703962851514
+      ],
+      "type": "VEC3"
+    },
+    {
+      "componentType": 5125,
+      "count": 60,
+      "max": [
+        23
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "componentType": 5126,
+      "count": 24,
+      "max": [
+        0.00784313725490196,
+        0.00784313725490196,
+        1.007843137254902
+      ],
+      "min": [
+        -0.00784313725490196,
+        -0.00784313725490196,
+        -1.007843137254902
+      ],
+      "type": "VEC3"
+    },
+    {
+      "componentType": 5126,
+      "count": 24,
+      "max": [
+        0.9142595600021952,
+        0.9101573156914482,
+        0.0012132930712666148
+      ],
+      "min": [
+        -0.9289395879639261,
+        -0.4670695732964151,
+        -0.033869560403930424
+      ],
+      "type": "VEC3"
+    },
+    {
+      "componentType": 5125,
+      "count": 120,
+      "max": [
+        79
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "componentType": 5126,
+      "count": 80,
+      "max": [
+        0.9983949656580009,
+        1.007843137254902,
+        1.007843137254902
+      ],
+      "min": [
+        -1.001605034341999,
+        -1.007843137254902,
+        -1.007843137254902
+      ],
+      "type": "VEC3"
+    },
+    {
+      "componentType": 5126,
+      "count": 80,
+      "max": [
+        1.061115791579835,
+        1.0725160555893116,
+        0.0009337525485373921
+      ],
+      "min": [
+        -1.061115791579835,
+        -1.001035740157716,
+        -0.2642157278267069
+      ],
+      "type": "VEC3"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "PhantomXD (https://sketchfab.com/PhantomXD)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/old-gmail-logo-f8c066b10d1a475abbd69ebbe9de2b83",
+      "title": "Old Gmail Logo"
+    },
+    "generator": "Sketchfab-9.64.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 260
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 264,
+      "byteLength": 218
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 488,
+      "byteLength": 336
+    }
+  ],
+  "buffers": [
+    {
+      "name": "mail",
+      "byteLength": 824,
+      "uri": "data:application/octet-stream;base64,RFJBQ08CAgEBAAAAICgBKAgBIgoADf/Xp+uSLa0qT9+o/gn/ARHAB0AnVqtwR4cC/wAAAAEAAQAJAwABAgEBCQMAAAMBAQEADAMBAgEEEwEKAQIBCAEmCgB47X4AUjrHloC+gygAoMgpACQRhADY+9gB0ACyA2AduAHo9QEAYHfcALg9FwBoPwAAsCkMEBUBAE0AIgQGICIABEo4HAAAw0S3uUOxACgABoZGABCbnQCY+ykAoBk8ZH8yALxSGABwe9oAUACHAyD/ywEA8XgDMDxkAgAAAAAA/wcAAAAAgL8AAIC/jQsHvQAAAEALBgMBAQEBAUABAP8AAAB/AAAA/wJqQwgAAAAARFJBQ08CAgEBAAAAGBQBFAQACP+bNt33bM8G/wEi/wI1QQL/AAAAAAABAAkDAAECAQEJAwAAAwEBAQAMG1UFA1UFVRUFIAcEi4UfSpyaCLggAN4/PAAEzzsAX5QAAJqYAABAxIcAMLoEABJIHwCsWwEgA4YEANzUCQAAjwEc/a0SPpshABDgQAAkkD4AjUwAAIAAANatAJABQwLgbd0BiAoAcFMnAAA8BgAAAAAA/wcAAAiUbb/Wre6+jQsHvf+y6z8LBgMBAQEBAUABAP8AAAB/AAAA/wKhQQgAAAAAAABEUkFDTwICAQEAAAAWKAEnAgAKb31d84ZCS1UVBQEBEFUJnUwhOrLG4OiIAv8AAAABAAEACQMAAQIBAQkDAAADAQEBAAwT6QIDvQjRBdEFA70oByHD6YZYaYPYP4MLnIhW8wDAfm8BcH3buuD3vZ3BBYDsIwTAHMrNnwtseDpH/98BOJFv5TwAQDqYmDx0vwBzAPDf+z33Q/UUXqAJOIZOYW+CHQ3U6d7O7QAAAAAA/wcAALSwh78AAIC/h7+GvrSwB0ALBgMBAAkDzRyZAQOZAZkBB20eEZi3VzDDVQYFg3YETeB6iOWAqgH+Af4B/gH+/gH+AQbz/gH+Af4B/gEgBQt1/9u73zsAgH+Af8DB/H1DgH+Af4B/gD8M6dAPAIA7BzigB/gH+DPw0wsABPgH+PMzaGR668+/+wv4C7h3NKQDAP8AAAB/AAAA/wIRRgg="
+    }
+  ],
+  "extensionsRequired": [
+    "KHR_materials_pbrSpecularGlossiness",
+    "KHR_draco_mesh_compression"
+  ],
+  "extensionsUsed": [
+    "KHR_materials_pbrSpecularGlossiness",
+    "KHR_draco_mesh_compression"
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "extensions": {
+        "KHR_materials_pbrSpecularGlossiness": {
+          "diffuseFactor": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "glossinessFactor": 0.39635280812797546,
+          "specularFactor": [
+            0.050351434008840575,
+            0.050351434008840575,
+            0.050351434008840575
+          ]
+        }
+      },
+      "name": "Material.001",
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "extensions": {
+        "KHR_materials_pbrSpecularGlossiness": {
+          "diffuseFactor": [
+            0.6866853833198546,
+            0.0030352696776390093,
+            0.0030352696776390093,
+            1
+          ],
+          "glossinessFactor": 0.4,
+          "specularFactor": [
+            0.17100835994514985,
+            0.03502221988220757,
+            0.03502221988220757
+          ]
+        }
+      },
+      "name": "Material.002",
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Plane_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 2
+          },
+          "indices": 0,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 0,
+              "attributes": {
+                "NORMAL": 0,
+                "POSITION": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Plane_1",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 4,
+            "POSITION": 5
+          },
+          "indices": 3,
+          "material": 1,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 1,
+              "attributes": {
+                "NORMAL": 0,
+                "POSITION": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Plane.001_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 7,
+            "POSITION": 8
+          },
+          "indices": 6,
+          "material": 0,
+          "mode": 4,
+          "extensions": {
+            "KHR_draco_mesh_compression": {
+              "bufferView": 2,
+              "attributes": {
+                "NORMAL": 0,
+                "POSITION": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "RootNode (gltf orientation matrix)",
+      "rotation": [
+        -0.7071067811865475,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "RootNode (model correction matrix)"
+    },
+    {
+      "children": [
+        3,
+        6
+      ],
+      "name": "Root"
+    },
+    {
+      "children": [
+        4,
+        5
+      ],
+      "matrix": [
+        1.2247,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1.0535299999999999,
+        0,
+        0,
+        -1.2247,
+        0,
+        0,
+        0,
+        0,
+        -0.07043,
+        1
+      ],
+      "name": "Plane"
+    },
+    {
+      "mesh": 0,
+      "name": "Plane_0"
+    },
+    {
+      "mesh": 1,
+      "name": "Plane_1"
+    },
+    {
+      "children": [
+        7
+      ],
+      "matrix": [
+        1.39859,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1.36273,
+        0,
+        0,
+        -1.36273,
+        0,
+        0,
+        0,
+        -0.13544000000000003,
+        0,
+        1
+      ],
+      "name": "Plane.001"
+    },
+    {
+      "mesh": 2,
+      "name": "Plane.001_0"
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "OSG_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}
