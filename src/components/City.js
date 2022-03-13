@@ -7,71 +7,12 @@ title: Island Neighborhood
 */
 import * as THREE from "three";
 import React, { useRef } from "react";
-import { useGLTF, useScroll, MeshReflectorMaterial } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
+import Ufo from "./Ufo";
 import {
-  useCompoundBody,
-  useSphere,
-  useCylinder,
-  useDistanceConstraint,
-  usePointToPointConstraint,
-} from "@react-three/cannon";
-import { Physics, usePlane, Debug } from "@react-three/cannon";
-import { Cursor, useDragConstraint } from "../helpers/Drag";
-
-function Mug(props) {
-  const { nodes, materials } = useGLTF("/cup.glb");
-  const [cup] = useCylinder(() => ({
-    mass: 100,
-    args: [0.32, 0.32, 1.2, 16],
-    linearDamping: 0.95,
-    angularDamping: 0.95,
-    position: [8, 0, 0.5],
-    ...props,
-  }));
-  const bind = useDragConstraint(cup);
-
-  return (
-    <group ref={cup} {...bind} dispose={null}>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={[0.012, 0.012, 0.012]}>
-        <mesh
-          receiveShadow
-          castShadow
-          material={materials.default}
-          geometry={nodes["buffer-0-mesh-0"].geometry}
-        />
-        <mesh
-          material={materials.Liquid}
-          geometry={nodes["buffer-0-mesh-0_1"].geometry}
-        />
-      </group>
-    </group>
-  );
-}
-
-function Floor(props) {
-  const [ref] = usePlane(() => ({
-    position: [8, -3, 0],
-    type: "Static",
-    ...props,
-  }));
-  return (
-    <mesh ref={ref} position={[0, 0, 0]} scale={0.3} receiveShadow>
-      <planeGeometry args={[100, 100]} />
-      <MeshReflectorMaterial
-        color="#878790"
-        blur={[400, 400]}
-        resolution={1024}
-        mixBlur={1}
-        mixStrength={3}
-        depthScale={1}
-        minDepthThreshold={0.85}
-        metalness={0}
-        roughness={1}
-      />
-    </mesh>
-  );
-}
+  useGLTF,
+  useScroll,
+} from "@react-three/drei";
+import { useFrame, useThree } from "@react-three/fiber";
 
 export default function Model({ ...props }) {
   const ref = useRef();
@@ -81,7 +22,6 @@ export default function Model({ ...props }) {
 
   useFrame((state, delta) => {
     const thirdModelInView = scroll.visible(3 / 4, 1 / 4);
-    //const secondModelInView = scroll.visible(2 / 4, 1 / 4);
     const offset = scroll.offset;
 
     ref.current.position.y = THREE.MathUtils.damp(
@@ -92,8 +32,6 @@ export default function Model({ ...props }) {
     );
 
     ref.current.rotation.x = -2.3 * offset;
-
-    console.log(ref.current.rotation.x);
   });
 
   return (
@@ -105,124 +43,174 @@ export default function Model({ ...props }) {
       {...props}
       dispose={null}
     >
-      <Physics allowSleep={false} iterations={15} gravity={[0, 0, 0]}>
-        <Debug color="black" scale={2}>
-          <Cursor />
-          <Mug />
-          <Floor />
-          <mesh
-            geometry={nodes.mesh_0.geometry}
-            material={materials.lambert12SG}
-          />
-          <mesh
-            geometry={nodes.mesh_1.geometry}
-            material={materials.lambert10SG}
-          />
-          <mesh
-            geometry={nodes.mesh_2.geometry}
-            material={materials.lambert13SG}
-          />
-          <mesh
-            geometry={nodes.mesh_3.geometry}
-            material={materials.lambert11SG}
-          />
-          <mesh
-            geometry={nodes.mesh_4.geometry}
-            material={materials.lambert16SG}
-          />
-          <mesh
-            geometry={nodes.mesh_5.geometry}
-            material={materials.lambert19SG}
-          />
-          <mesh
-            geometry={nodes.mesh_6.geometry}
-            material={materials.lambert15SG}
-          />
-          <mesh
-            geometry={nodes.mesh_7.geometry}
-            material={materials.lambert18SG}
-          />
-          <mesh
-            geometry={nodes.mesh_8.geometry}
-            material={materials.lambert20SG}
-          />
-          <mesh
-            geometry={nodes.mesh_9.geometry}
-            material={materials.lambert30SG}
-          />
-          <mesh
-            geometry={nodes.mesh_10.geometry}
-            material={materials.lambert24SG}
-          />
-          <mesh
-            geometry={nodes.mesh_11.geometry}
-            material={materials.lambert25SG}
-          />
-          <mesh
-            geometry={nodes.mesh_12.geometry}
-            material={materials.lambert26SG}
-          />
-          <mesh
-            geometry={nodes.mesh_13.geometry}
-            material={materials.lambert21SG}
-          />
-          <mesh
-            geometry={nodes.mesh_14.geometry}
-            material={materials.lambert23SG}
-          />
-          <mesh
-            geometry={nodes.mesh_15.geometry}
-            material={materials.lambert27SG}
-          />
-          <mesh
-            geometry={nodes.mesh_16.geometry}
-            material={materials.lambert28SG}
-          />
-          <mesh
-            geometry={nodes.mesh_17.geometry}
-            material={materials.lambert3SG}
-          />
-          {/* water */}
-          <mesh
-            geometry={nodes.mesh_18.geometry}
-            material={materials.lambert5SG}
-          />
-          <mesh
-            geometry={nodes.mesh_19.geometry}
-            material={materials.lambert29SG}
-          />
-          <mesh
-            geometry={nodes.mesh_20.geometry}
-            material={materials.lambert6SG}
-          />
-          <mesh
-            geometry={nodes.mesh_21.geometry}
-            material={materials.lambert7SG}
-          />
-          <mesh
-            geometry={nodes.mesh_22.geometry}
-            material={materials.lambert9SG}
-          />
-          <mesh
-            geometry={nodes.mesh_23.geometry}
-            material={materials.modellambert17SG}
-          />
-          <mesh
-            geometry={nodes.mesh_24.geometry}
-            material={materials.modelpasted__pasted__blinn3SG}
-          />
-          <mesh
-            geometry={nodes.mesh_25.geometry}
-            material={materials.lambert14SG}
-          />
-          <mesh
-            geometry={nodes.mesh_26.geometry}
-            material={materials.modelinitialShadingGroup}
-          />
-        </Debug>
-      </Physics>
+      <Ufo/>
+      <mesh>
+        <mesh
+          geometry={nodes.mesh_0.geometry}
+          material={materials.lambert12SG}
+        />
+        <mesh
+          geometry={nodes.mesh_1.geometry}
+          material={materials.lambert10SG}
+        />
+        <mesh
+          geometry={nodes.mesh_2.geometry}
+          material={materials.lambert13SG}
+        />
+        <mesh
+          geometry={nodes.mesh_3.geometry}
+          material={materials.lambert11SG}
+        />
+        <mesh
+          geometry={nodes.mesh_4.geometry}
+          material={materials.lambert16SG}
+        />
+        <mesh
+          geometry={nodes.mesh_5.geometry}
+          material={materials.lambert19SG}
+        />
+        <mesh
+          geometry={nodes.mesh_6.geometry}
+          material={materials.lambert15SG}
+        />
+        <mesh
+          geometry={nodes.mesh_7.geometry}
+          material={materials.lambert18SG}
+        />
+        <mesh
+          geometry={nodes.mesh_8.geometry}
+          material={materials.lambert20SG}
+        />
+        <mesh
+          geometry={nodes.mesh_9.geometry}
+          material={materials.lambert30SG}
+        />
+        <mesh
+          geometry={nodes.mesh_10.geometry}
+          material={materials.lambert24SG}
+        />
+        <mesh
+          geometry={nodes.mesh_11.geometry}
+          material={materials.lambert25SG}
+        />
+        <mesh
+          geometry={nodes.mesh_12.geometry}
+          material={materials.lambert26SG}
+        />
+        <mesh
+          geometry={nodes.mesh_13.geometry}
+          material={materials.lambert21SG}
+        />
+        <mesh
+          geometry={nodes.mesh_14.geometry}
+          material={materials.lambert23SG}
+        />
+        <mesh
+          geometry={nodes.mesh_15.geometry}
+          material={materials.lambert27SG}
+        />
+        <mesh
+          geometry={nodes.mesh_16.geometry}
+          material={materials.lambert28SG}
+        />
+        <mesh
+          geometry={nodes.mesh_17.geometry}
+          material={materials.lambert3SG}
+        />
+        {/* water */}
+        <mesh
+          geometry={nodes.mesh_18.geometry}
+          material={materials.lambert5SG}
+        />
+        <mesh
+          geometry={nodes.mesh_19.geometry}
+          material={materials.lambert29SG}
+        />
+        <mesh
+          geometry={nodes.mesh_20.geometry}
+          material={materials.lambert6SG}
+        />
+        <mesh
+          geometry={nodes.mesh_21.geometry}
+          material={materials.lambert7SG}
+        />
+        <mesh
+          geometry={nodes.mesh_22.geometry}
+          material={materials.lambert9SG}
+        />
+        <mesh
+          geometry={nodes.mesh_23.geometry}
+          material={materials.modellambert17SG}
+        />
+        <mesh
+          geometry={nodes.mesh_24.geometry}
+          material={materials.modelpasted__pasted__blinn3SG}
+        />
+        <mesh
+          geometry={nodes.mesh_25.geometry}
+          material={materials.lambert14SG}
+        />
+        <mesh
+          geometry={nodes.mesh_26.geometry}
+          material={materials.modelinitialShadingGroup}
+        />
+      </mesh>
     </group>
   );
 }
 
 useGLTF.preload("/city.gltf");
+
+// function Mug(props) {
+//   const { nodes, materials } = useGLTF("/cup.glb");
+//   const [cup] = useCylinder(() => ({
+//     mass: 100,
+//     args: [0.32, 0.32, 1.2, 16],
+//     linearDamping: 0.95,
+//     angularDamping: 0.95,
+//     position: [8, 0, 0.5],
+//     ...props,
+//   }));
+//   const bind = useDragConstraint(cup);
+
+//   return (
+//     <group ref={cup} {...bind} dispose={null}>
+//       <group rotation={[Math.PI / 2, 0, 0]} scale={[0.012, 0.012, 0.012]}>
+//         <mesh
+//           receiveShadow
+//           castShadow
+//           material={materials.default}
+//           geometry={nodes["buffer-0-mesh-0"].geometry}
+//         />
+//         <mesh
+//           material={materials.Liquid}
+//           geometry={nodes["buffer-0-mesh-0_1"].geometry}
+//         />
+//       </group>
+//     </group>
+//   );
+// }
+
+// function Floor(props) {
+//   const [ref] = usePlane(() => ({
+//     position: [8, -3, 0],
+//     type: "Static",
+//     ...props,
+//   }));
+//   return (
+//     <mesh ref={ref} position={[0, 0, 0]} scale={0.3} receiveShadow>
+//       <planeGeometry args={[100, 100]} />
+//       <MeshReflectorMaterial
+//         color="#878790"
+//         blur={[400, 400]}
+//         resolution={1024}
+//         mixBlur={1}
+//         mixStrength={3}
+//         depthScale={1}
+//         minDepthThreshold={0.85}
+//         metalness={0}
+//         roughness={1}
+//       />
+//     </mesh>
+//   );
+// }

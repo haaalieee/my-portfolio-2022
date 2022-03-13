@@ -112,3 +112,14 @@ canvas {
   font-size: 20px;
 }
 
+.footnote {
+  font-size: 11px;
+  line-height: 1.5;
+  font-style: italic;
+  margin-top: 3vw;
+}
+
+.sup {
+  font-size: 70%;
+  vertical-align: top;
+}
