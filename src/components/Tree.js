@@ -8,15 +8,27 @@ title: Floating_island_HandPainted
 import * as THREE from "three";
 import React, { useEffect, useState, useRef } from "react";
 import { useGLTF, useAnimations, useScroll } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useSurpriseUpdate } from "../context/AboutContext";
+import { Cloud } from "@react-three/drei";
+import { useSurprise } from "../context/AboutContext";
+import Pointer from "./Pointer";
+import Chat from "./Chat";
+import Bug from "./Bug";
 
 export default function Model({ ...props }) {
   const { scene, nodes, materials, animations } = useGLTF("/tree.gltf");
   const { ref, actions } = useAnimations(animations);
   const scroll = useScroll();
   const [hovered, setHovered] = useState(false);
+  const [hovered1, setHovered1] = useState(false);
   const toggleCloudOpacity = useSurpriseUpdate();
+  const { height } = useThree((state) => state.viewport);
+  const isVisible = useSurprise();
+  const cloud1 = useRef();
+  const cloud2 = useRef();
+  const cloud3 = useRef();
+  const aboutGroupRef = useRef();
 
   useEffect(() => {
     actions["Take 001"].play();
@@ -29,38 +41,105 @@ export default function Model({ ...props }) {
 
   useFrame((state, delta) => {
     const offset = 1 - scroll.offset;
+    const secondModelInView = scroll.visible(2 / 4, 3 / 4);
+
     state.camera.position.set(
       Math.sin(offset) * 30,
       Math.atan(offset * Math.PI * 2) * 15,
       Math.cos((offset * Math.PI) / 3) * -10
     );
+
     state.camera.lookAt(3, 10, 9);
 
-    ref.current.position.x = 0;
-    ref.current.position.y = -13;
-    ref.current.position.z = 4;
+    // ref.current.position.x = 0;
+    // ref.current.position.y = -13;
+    // ref.current.position.z = 4;
 
-    if (hovered) {
-      console.log("hovered");
+    aboutGroupRef.current.position.y = THREE.MathUtils.damp(
+      aboutGroupRef.current.position.y,
+      secondModelInView ? height / 2 + 20 : 2.1,
+      4,
+      delta
+    );
+
+    if (isVisible) {
+      cloud1.current.position.z = THREE.MathUtils.damp(
+        cloud1.current.position.z,
+        -60,
+        0.5,
+        delta
+      );
+      cloud2.current.position.z = THREE.MathUtils.damp(
+        cloud2.current.position.z,
+        -60,
+        0.5,
+        delta
+      );
+      cloud3.current.position.z = THREE.MathUtils.damp(
+        cloud3.current.position.z,
+        -60,
+        0.5,
+        delta
+      );
+    } else {
+      cloud1.current.position.z = THREE.MathUtils.damp(
+        0,
+        cloud1.current.position.z,
+        0,
+        delta
+      );
+      cloud2.current.position.z = THREE.MathUtils.damp(
+        0,
+        cloud2.current.position.z,
+        0,
+        delta
+      );
+      cloud3.current.position.z = THREE.MathUtils.damp(
+        0,
+        cloud3.current.position.z,
+        0,
+        delta
+      );
     }
   });
 
   return (
-    <primitive object={scene} ref={ref} {...props}>
-      <group
-        position={[1.07, 2.88, 4.29]}
-        rotation={[-0.82, 1.12, 0.72]}
-        scale={[0.29, 0.29, 0.29]}
-      >
-        <mesh
-          geometry={nodes.baculo__lambert9_0.geometry}
-          material={ materials.lambert9}
-          onPointerOver={() => setHovered(true)}
-          onPointerOut={() => setHovered(false)}
-          onClick={toggleCloudOpacity}
+    <group ref={aboutGroupRef} position={[0.04, 2.1, 1.1]}>
+      <Chat />
+      <Bug scale={2} position={[6, 4, 0]} rotation={[0, Math.PI / 2, 0]} />
+      <Pointer />
+      <mesh>
+        <primitive object={scene} ref={ref} {...props}>
+          <group
+            position={[1.07, 2.88, 4.29]}
+            rotation={[-0.82, 1.12, 0.72]}
+            scale={[0.29, 0.29, 0.29]}
+          >
+            <mesh
+              geometry={nodes.baculo__lambert9_0.geometry}
+              material={materials.lambert9}
+              onPointerOver={() => setHovered(true)}
+              onPointerOut={() => setHovered(false)}
+              onClick={toggleCloudOpacity}
+            />
+          </group>
+        </primitive>
+      </mesh>
+      <mesh ref={cloud1} position={[3, -2, -5]}>
+        <Cloud
+          speed={0.2}
+          opacity={1}
+          onPointerOver={() => setHovered1(true)}
+          onPointerOut={() => setHovered1(false)}
         />
-      </group>
-    </primitive>
+      </mesh>
+      <mesh ref={cloud2} position={[5, 0, -2]}>
+        <Cloud speed={0.2} opacity={0.75} />
+      </mesh>
+      <mesh ref={cloud3} position={[-2, -1, -8]}>
+        <Cloud speed={0.2} opacity={0.5} />
+      </mesh>
+    </group>
   );
 }
 

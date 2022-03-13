@@ -11,7 +11,7 @@ import Ledger from "./components/Ledger";
 import Content from "./components/Content";
 import About from "./components/About";
 import Billboard from "./components/Billboard";
-import Robot from "./components/Robot";
+import City from "./components/City";
 import { AboutProvider } from "./context/AboutContext";
 import "./styles.css";
 
@@ -42,8 +42,8 @@ function App() {
               <AboutProvider>
                 <About />
               </AboutProvider>
-              <Robot />
               <Billboard />
+              <City />
               <Stars radius={500} depth={10} count={5000} factor={10} fade />
             </Scroll>
             <Scroll html>

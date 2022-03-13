@@ -15,6 +15,7 @@ export default function Model({ ...props }) {
   const { scene, animations } = useGLTF("/bug.gltf");
   const { ref, actions } = useAnimations(animations);
   const bugSurprise = useSurprise();
+  const bugClock = new THREE.Clock();
 
   useEffect(() => {
     actions["SMALL BUGG IDLE"].play();
@@ -22,10 +23,10 @@ export default function Model({ ...props }) {
 
   useFrame(({ clock, mouse }) => {
     // ref.current.position.z = -Math.sin(clock.getElapsedTime() / 2) * 8;
-
+    
     ref.current.rotation.y = THREE.MathUtils.lerp(
       ref.current.rotation.y,
-      Math.cos(clock.getElapsedTime() / 2) * 2,
+      Math.cos(bugClock.getElapsedTime() / 2) * 2,
       0.05
     );
 
@@ -36,7 +37,7 @@ export default function Model({ ...props }) {
         0,
         100
       );
-      clock.start();
+      bugClock.start();
     } else {
       ref.current.position.z = -Math.sin(clock.getElapsedTime() / 2) * 3;
     }

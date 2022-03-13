@@ -19,8 +19,8 @@ export default function Model({ ...props }) {
 
   useFrame(({clock}) => {
     const modelInView = scroll.visible(1 / 4, 2 / 4);
-    ref.current.position.y = 8.4 + (Math.sin(clock.getElapsedTime()*4)/4);
-    ref.current.rotation.z = Math.sin(clock.getElapsedTime() / 10) * 3 * Math.PI
+    ref.current.position.y = 6.5 + (Math.sin(clock.getElapsedTime()*4)/4);
+    ref.current.rotation.z = Math.sin(clock.getElapsedTime() / 10) * 3.5 * Math.PI
 
     // if (modelInView && !bugSurprise) {
     //   ref.current.visible = true;
@@ -33,7 +33,7 @@ export default function Model({ ...props }) {
     <primitive
       ref={ref}
       object={scene}
-      position={[4.2, 8.5, 2.8]}
+      position={[4.2, 8.5, 1.75]}
       material={materials.arrow}
       material-metalness={1}
       material-color={[192,192,192]}

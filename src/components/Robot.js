@@ -21,17 +21,17 @@ export default function Model({ ...props }) {
   }, [actions]);
 
   useFrame(({clock}) => {
-    robotTerminalRef.current.position.y =  Math.sin(clock.getElapsedTime()*4)/3;
+    robotTerminalRef.current.position.y =  Math.sin(clock.getElapsedTime()*3)/4;
   });
 
   return (
-    <mesh ref={robotTerminalRef} position={[-1,-1,0]} >
-      <Terminal position={[3.1, -41, -1]} rotation={[-1.2,-0.9,-1]} scale={[0.06, 0.05,0.05]}/>
+    <mesh ref={robotTerminalRef}>
+      <Terminal position={[0.4, 0.2, -1.35]} rotation={[1.9, -2.45,2]} scale={[0.025, 0.02, 0.02]}/>
       <primitive
         object={scene}
-        position={[0, -45, 0]}
-        rotation={[0,1.9,0]}
-        scale={0.005}
+        position={[-0.85, -1.5, -0.8]}
+        rotation={[0,2,0]}
+        scale={0.002}
         ref={ref}
         {...props}
       />

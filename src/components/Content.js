@@ -17,6 +17,11 @@ const Content = () => (
     <Ledgerline text={"Works"} />
     <p className="works-content"><span>For the past years, I have been building e-commerce sites, landing pages, microsites etc.</span></p>
     <p>I focus on building the frontend side using modern technology stacks. Some of my roles are delivering UI/UX designs into a working digital assets, polishing interfaces, testing for accessibility, optimizing web pages, automating processes, browser testing and such.</p>
+    <div className="spacer"/>
+    <Ledgerline text={"Contact"} />
+    <p className="works-content"><span>Let's build cool stuffs together</span></p>
+    <p>Want to learn more about me? Shoot me a mail <a href="mailto:morenoanalie14@gmail.com">here</a></p>
+    <p clsas="footnote">This site is undergoing renovations.</p>
   </div>
 );
 

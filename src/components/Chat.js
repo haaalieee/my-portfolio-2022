@@ -25,7 +25,7 @@ export default function Model({ ...props }) {
   return (
     <animated.mesh 
       ref={group}
-      position={[5, 9, -1]}
+      position={[5.8, 5.8, -0.9]}
       scale={scale}
       rotation={[0, 2, 0]}
       {...props}
