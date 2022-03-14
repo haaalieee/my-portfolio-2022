@@ -38,6 +38,7 @@ function App() {
             shadow-bias={-0.0001}
           />
         </PerspectiveCamera>
+        {/* <Loader /> */}
         <Suspense fallback={<Loader/>}>
           <ScrollControls pages={4}>
             <Scroll>
