@@ -21,7 +21,6 @@ export default function Model({ ...props }) {
   const { ref, actions } = useAnimations(animations);
   const scroll = useScroll();
   const [hovered, setHovered] = useState(false);
-  const [hovered1, setHovered1] = useState(false);
   const toggleCloudOpacity = useSurpriseUpdate();
   const { height } = useThree((state) => state.viewport);
   const isVisible = useSurprise();
@@ -129,8 +128,6 @@ export default function Model({ ...props }) {
         <Cloud
           speed={0.2}
           opacity={1}
-          onPointerOver={() => setHovered1(true)}
-          onPointerOut={() => setHovered1(false)}
         />
       </mesh>
       <mesh ref={cloud2} position={[5, 0, -2]}>

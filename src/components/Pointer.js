@@ -7,12 +7,10 @@ title: Arrow
 */
 
 import React, { useRef } from "react";
-import { useGLTF, useScroll } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useSurprise } from "../context/AboutContext";
 
 export default function Model({ ...props }) {
-  const scroll = useScroll();
   const ref = useRef();
   const { scene, materials } = useGLTF("/pointer.gltf");
 
