@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import Ledgerline from "./Ledgerline";
 
 const Content = () => (

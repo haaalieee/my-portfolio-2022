@@ -6,7 +6,6 @@ source: https://sketchfab.com/3d-models/old-gmail-logo-f8c066b10d1a475abbd69ebbe
 title: Old Gmail Logo
 */
 
-import * as THREE from "three";
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useSurprise } from "../context/AboutContext";

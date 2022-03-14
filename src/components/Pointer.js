@@ -14,11 +14,9 @@ import { useSurprise } from "../context/AboutContext";
 export default function Model({ ...props }) {
   const scroll = useScroll();
   const ref = useRef();
-  const bugSurprise = useSurprise();
   const { scene, materials } = useGLTF("/pointer.gltf");
 
   useFrame(({clock}) => {
-    const modelInView = scroll.visible(1 / 4, 2 / 4);
     ref.current.position.y = 6.5 + (Math.sin(clock.getElapsedTime()*4)/4);
     ref.current.rotation.z = Math.sin(clock.getElapsedTime() / 10) * 3.5 * Math.PI
 

@@ -8,7 +8,7 @@ title: Chat Bubble Icon
 
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useSpring, animated, config } from "@react-spring/three";
+import { useSpring, animated } from "@react-spring/three";
 import { useSurprise } from "../context/AboutContext";
 import Mail from "./Mail";
 

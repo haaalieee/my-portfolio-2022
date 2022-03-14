@@ -6,7 +6,7 @@ source: https://sketchfab.com/models/583211a5935449ab92179aed53b2f4f2
 title: Mike the Bird || all animations
 */
 import * as THREE from "three";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useSurprise } from "../context/AboutContext";

@@ -6,13 +6,11 @@ source: https://sketchfab.com/3d-models/ufo-2d55eec1da344c9a9943abafbd07f0f9
 title: Ufo
 */
 
-import * as THREE from "three";
 import { Vector3 } from "three";
 import React, { useEffect, useRef } from "react";
 import {
   useGLTF,
   useAnimations,
-  useScroll,
   SpotLight,
   useDepthBuffer,
 } from "@react-three/drei";
@@ -21,12 +19,8 @@ import { useFrame, useThree } from "@react-three/fiber";
 function MovingSpot({ vec = new Vector3(), ...props }) {
   const light = useRef();
   const viewport = useThree((state) => state.viewport);
-  const scroll = useScroll();
 
   useFrame((state, delta) => {
-    const thirdModelInView = scroll.visible(3 / 4, 1 / 4);
-    const offset = scroll.offset;
-
     light.current.target.position.lerp(
       vec.set(
         (-state.mouse.x * viewport.width) / 2,
