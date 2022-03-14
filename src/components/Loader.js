@@ -6,7 +6,7 @@ export default function Loader() {
     <Html className="loader" center>
       <div className="loader-content">
         <div className="container">
-          <h1>{Math.floor(progress)} % loaded</h1>
+          <h2>{Math.floor(progress)} % loaded</h2>
           <div className="progressbar-container">
             <div
               className="progressbar-complete"

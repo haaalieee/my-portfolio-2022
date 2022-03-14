@@ -50,9 +50,9 @@ canvas {
   margin: 50px auto;
 }
 
-.loader-content .container h1 {
+.loader-content .container h2 {
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .loader-content .container span {
@@ -82,7 +82,11 @@ canvas {
   z-index: 2;
 }
 
-.loader-content .container .progressbar-container .progressbar-complete .progressbar-liquid {
+.loader-content
+  .container
+  .progressbar-container
+  .progressbar-complete
+  .progressbar-liquid {
   z-index: 1;
   width: 70px;
   height: 70px;
@@ -140,7 +144,7 @@ canvas {
   width: 28vw;
   top: 13vw;
   left: 7vw;
-  padding-left: 4.5rem;
+  padding-left: 5vw;
 }
 
 .content-wrapper h1 {
@@ -183,7 +187,7 @@ canvas {
 
 .ledgerline:before {
   content: "";
-  width: 4rem;
+  width: 4vw;
   height: 1px;
   background-color: #7bffac;
   position: absolute;
@@ -192,7 +196,7 @@ canvas {
 }
 
 .spacer {
-  height: 50vh;
+  height: 58vh;
 }
 
 .content-gotcha p {
@@ -210,4 +214,78 @@ canvas {
 .sup {
   font-size: 70%;
   vertical-align: top;
+}
+
+@media screen and (min-width: 1377px) and (max-width: 1600px) {
+  .spacer {
+    height: 24vw;
+  }
+}
+
+@media screen and (min-width: 1281px) and (max-width: 1366px) {
+  .content-wrapper {
+    width: 29vw;
+  }
+
+  .spacer {
+    height: 29vh;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1280px) {
+  .content-wrapper {
+    width: 29vw;
+  }
+
+  .spacer {
+    height: 45vh;
+  }
+}
+
+@media screen and (min-width: 561px) and (max-width: 800px) {
+  .content-wrapper {
+    width: 52vw;
+  }
+
+  .spacer {
+    height: 63vh;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .content-wrapper {
+    width: 81vw;
+  }
+
+  .content-wrapper h1 {
+    font-size: 15vw;
+    line-height: 4rem;
+  }
+
+  .spacer {
+    height: 64vh;
+  }
+
+  .content-wrapper .sub-content {
+    font-size: 18px;
+    line-height: 1.5rem;
+  }
+
+  .content-wrapper .about-content,
+  .content-wrapper .works-content {
+    font-size: 24px;
+    line-height: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .content-wrapper h1 {
+    font-size: 64px;
+    line-height: 5rem;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 1.4rem;
+  }
 }
