@@ -289,3 +289,23 @@ canvas {
     line-height: 1.4rem;
   }
 }
+
+.mobile-wrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #11161a;
+}
+
+.mobile-wrapper h1{
+  color: #7bffac;
+}
+
+.mobile-wrapper p{
+  max-width: 300px;
+  margin: 0 auto;
+}

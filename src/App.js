@@ -13,7 +13,9 @@ import About from "./components/About";
 import Billboard from "./components/Billboard";
 import City from "./components/City";
 import Loader from "./components/Loader";
+import MobileContent from "./components/MobileContent";
 import { AboutProvider } from "./context/AboutContext";
+import {BrowserView, MobileView} from 'react-device-detect';
 import "./styles.css";
 
 function App() {
@@ -22,39 +24,44 @@ function App() {
 
   return (
     <div className="App">
-      <Canvas className="canvas">
-        <color attach="background" args={["#11161a"]} />
-        <OrbitControls enablePan={false} enableZoom={false} />
-        <PerspectiveCamera makeDefault position={[0, 0, 16]} fov={50}>
-          <ambientLight intensity={0.02} />
-          <pointLight intensity={1} position={[0, 20, 10]} />
-          <spotLight
-            castShadow
-            intensity={1}
-            angle={0.3}
-            penumbra={1}
-            position={[10, 15, -15]}
-            shadow-mapSize={[1024, 1024]}
-            shadow-bias={-0.0001}
-          />
-        </PerspectiveCamera>
-        <Suspense fallback={<Loader/>}>
-          <ScrollControls pages={4}>
-            <Scroll>
-              <AboutProvider>
-                <About />
-              </AboutProvider>
-              <Billboard />
-              <City />
-              <Stars radius={500} depth={10} count={5000} factor={10} fade />
-            </Scroll>
-            <Scroll html>
-              <Content />
-            </Scroll>
-          </ScrollControls>
-        </Suspense>
-      </Canvas>
-      <Ledger ref={ledger} scroll={scroll} />
+      <BrowserView>
+        <Canvas className="canvas">
+          <color attach="background" args={["#11161a"]} />
+          <OrbitControls enablePan={false} enableZoom={false} />
+          <PerspectiveCamera makeDefault position={[0, 0, 16]} fov={50}>
+            <ambientLight intensity={0.02} />
+            <pointLight intensity={1} position={[0, 20, 10]} />
+            <spotLight
+              castShadow
+              intensity={1}
+              angle={0.3}
+              penumbra={1}
+              position={[10, 15, -15]}
+              shadow-mapSize={[1024, 1024]}
+              shadow-bias={-0.0001}
+            />
+          </PerspectiveCamera>
+          <Suspense fallback={<Loader/>}>
+            <ScrollControls pages={4}>
+              <Scroll>
+                <AboutProvider>
+                  <About />
+                </AboutProvider>
+                <Billboard />
+                <City />
+                <Stars radius={500} depth={10} count={5000} factor={10} fade />
+              </Scroll>
+              <Scroll html>
+                <Content />
+              </Scroll>
+            </ScrollControls>
+          </Suspense>
+        </Canvas>
+        <Ledger ref={ledger} scroll={scroll} />
+      </BrowserView>
+      <MobileView>
+        <MobileContent />
+      </MobileView>
     </div>
   );
 }
