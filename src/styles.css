@@ -216,6 +216,28 @@ canvas {
   vertical-align: top;
 }
 
+.download {
+  padding-top: 2rem;
+}
+
+.download-btn {
+  border: 1px solid #7bffac;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+.download-btn:hover, 
+.download-btn:focus {
+  border: 1px solid #ffffff;
+  text-decoration: underline;
+  color: white;
+}
+
+.download-img {
+  padding-right: 9px;
+  width: 15px;
+}
+
 @media screen and (min-width: 1377px) and (max-width: 1600px) {
   .spacer {
     height: 24vw;
