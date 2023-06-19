@@ -5,14 +5,11 @@ license: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 source: https://sketchfab.com/3d-models/island-neighborhood-637e207ce91c4001b3aadba7a06b58eb
 title: Island Neighborhood
 */
-import * as THREE from "three";
-import React, { useRef } from "react";
-import Ufo from "./Ufo";
-import {
-  useGLTF,
-  useScroll,
-} from "@react-three/drei";
+import { useGLTF, useScroll } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
+import React, { useRef } from "react";
+import * as THREE from "three";
+import Ufo from "./Ufo";
 
 export default function Model({ ...props }) {
   const ref = useRef();
@@ -24,12 +21,31 @@ export default function Model({ ...props }) {
     const thirdModelInView = scroll.visible(3 / 4, 1 / 4);
     const offset = scroll.offset;
 
-    ref.current.position.y = THREE.MathUtils.damp(
-      ref.current.position.y,
-      thirdModelInView ? -20 * offset : -height - 20,
-      10,
-      delta
-    );
+    const currentYPosition = ref.current.position.y;
+
+    if (thirdModelInView) {
+      const newYPosition = THREE.MathUtils.lerp(
+        currentYPosition,
+        -20 * offset,
+        0.05
+      );
+      ref.current.position.set(
+        ref.current.position.x,
+        newYPosition,
+        ref.current.position.z
+      );
+    } else {
+      const newYPosition = THREE.MathUtils.lerp(
+        currentYPosition,
+        -height - 20,
+        0.05
+      );
+      ref.current.position.set(
+        ref.current.position.x,
+        newYPosition,
+        ref.current.position.z
+      );
+    }
 
     ref.current.rotation.x = -2.3 * offset;
   });
@@ -43,116 +59,170 @@ export default function Model({ ...props }) {
       {...props}
       dispose={null}
     >
-      <Ufo/>
-      <mesh>
+      <Ufo />
+      <mesh receiveShadow castShadow>
         <mesh
           geometry={nodes.mesh_0.geometry}
           material={materials.lambert12SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_1.geometry}
           material={materials.lambert10SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_2.geometry}
           material={materials.lambert13SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_3.geometry}
           material={materials.lambert11SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_4.geometry}
           material={materials.lambert16SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_5.geometry}
           material={materials.lambert19SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_6.geometry}
           material={materials.lambert15SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_7.geometry}
           material={materials.lambert18SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_8.geometry}
           material={materials.lambert20SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_9.geometry}
           material={materials.lambert30SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_10.geometry}
           material={materials.lambert24SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_11.geometry}
           material={materials.lambert25SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_12.geometry}
           material={materials.lambert26SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_13.geometry}
           material={materials.lambert21SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_14.geometry}
           material={materials.lambert23SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_15.geometry}
           material={materials.lambert27SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_16.geometry}
           material={materials.lambert28SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_17.geometry}
           material={materials.lambert3SG}
+          receiveShadow
+          castShadow
         />
         {/* water */}
         <mesh
           geometry={nodes.mesh_18.geometry}
           material={materials.lambert5SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_19.geometry}
           material={materials.lambert29SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_20.geometry}
           material={materials.lambert6SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_21.geometry}
           material={materials.lambert7SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_22.geometry}
           material={materials.lambert9SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_23.geometry}
           material={materials.modellambert17SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_24.geometry}
           material={materials.modelpasted__pasted__blinn3SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_25.geometry}
           material={materials.lambert14SG}
+          receiveShadow
+          castShadow
         />
         <mesh
           geometry={nodes.mesh_26.geometry}
           material={materials.modelinitialShadingGroup}
+          receiveShadow
+          castShadow
         />
       </mesh>
     </group>
@@ -160,57 +230,3 @@ export default function Model({ ...props }) {
 }
 
 useGLTF.preload("/city.gltf");
-
-// function Mug(props) {
-//   const { nodes, materials } = useGLTF("/cup.glb");
-//   const [cup] = useCylinder(() => ({
-//     mass: 100,
-//     args: [0.32, 0.32, 1.2, 16],
-//     linearDamping: 0.95,
-//     angularDamping: 0.95,
-//     position: [8, 0, 0.5],
-//     ...props,
-//   }));
-//   const bind = useDragConstraint(cup);
-
-//   return (
-//     <group ref={cup} {...bind} dispose={null}>
-//       <group rotation={[Math.PI / 2, 0, 0]} scale={[0.012, 0.012, 0.012]}>
-//         <mesh
-//           receiveShadow
-//           castShadow
-//           material={materials.default}
-//           geometry={nodes["buffer-0-mesh-0"].geometry}
-//         />
-//         <mesh
-//           material={materials.Liquid}
-//           geometry={nodes["buffer-0-mesh-0_1"].geometry}
-//         />
-//       </group>
-//     </group>
-//   );
-// }
-
-// function Floor(props) {
-//   const [ref] = usePlane(() => ({
-//     position: [8, -3, 0],
-//     type: "Static",
-//     ...props,
-//   }));
-//   return (
-//     <mesh ref={ref} position={[0, 0, 0]} scale={0.3} receiveShadow>
-//       <planeGeometry args={[100, 100]} />
-//       <MeshReflectorMaterial
-//         color="#878790"
-//         blur={[400, 400]}
-//         resolution={1024}
-//         mixBlur={1}
-//         mixStrength={3}
-//         depthScale={1}
-//         minDepthThreshold={0.85}
-//         metalness={0}
-//         roughness={1}
-//       />
-//     </mesh>
-//   );
-// }

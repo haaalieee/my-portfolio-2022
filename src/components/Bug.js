@@ -5,10 +5,10 @@ license: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 source: https://sketchfab.com/models/583211a5935449ab92179aed53b2f4f2
 title: Mike the Bird || all animations
 */
-import * as THREE from "three";
-import React, { useEffect } from "react";
+import { useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF, useAnimations } from "@react-three/drei";
+import React, { useEffect } from "react";
+import * as THREE from "three";
 import { useSurprise } from "../context/AboutContext";
 
 export default function Model({ ...props }) {
@@ -23,7 +23,7 @@ export default function Model({ ...props }) {
 
   useFrame(({ clock, mouse }) => {
     // ref.current.position.z = -Math.sin(clock.getElapsedTime() / 2) * 8;
-    
+
     ref.current.rotation.y = THREE.MathUtils.lerp(
       ref.current.rotation.y,
       Math.cos(bugClock.getElapsedTime() / 2) * 2,

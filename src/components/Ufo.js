@@ -6,64 +6,131 @@ source: https://sketchfab.com/3d-models/ufo-2d55eec1da344c9a9943abafbd07f0f9
 title: Ufo
 */
 
-import { Vector3 } from "three";
-import React, { useEffect, useRef } from "react";
 import {
-  useGLTF,
-  useAnimations,
   SpotLight,
-  useDepthBuffer,
+  useAnimations,
+  useGLTF
 } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-
-function MovingSpot({ vec = new Vector3(), ...props }) {
-  const light = useRef();
-  const viewport = useThree((state) => state.viewport);
-
-  useFrame((state, delta) => {
-    light.current.target.position.lerp(
-      vec.set(
-        (-state.mouse.x * viewport.width) / 2,
-        (-state.mouse.y * viewport.height) / 2,
-        0
-      ),
-      0.1
-    );
-
-    light.current.target.updateMatrixWorld();
-  
-  });
-  return (
-    <SpotLight
-      ref={light}
-      penumbra={1}
-      distance={12}
-      angle={0.5}
-      attenuation={5}
-      anglePower={4}
-      intensity={4}
-      {...props}
-    />
-  );
-}
+import { useControls } from "leva";
+import React, { useEffect, useMemo, useRef } from "react";
+import * as THREE from "three";
 
 export default function Model({ ...props }) {
   const { scene, animations } = useGLTF("/alien.gltf");
   const { ref, actions } = useAnimations(animations);
-  const depthBuffer = useDepthBuffer({ frames: 1 });
+
+  const movingDirRef = useRef();
+  const movingDirLight = useMemo(() => new THREE.SpotLight(0xffffff), []);
+
+  // useHelper(movingDirRef, THREE.SpotLightHelper, "cyan");
+
+  const vec = new THREE.Vector3();
 
   useEffect(() => {
     actions["spin"].play();
   }, [actions]);
 
-  useFrame(({clock}) => {
-    ref.current.position.z =  10 + Math.sin(clock.getElapsedTime()*5)/4;
+  useFrame(({ clock }) => {
+    ref.current.position.z = 10 + Math.sin(clock.getElapsedTime() * 5) / 4;
   });
+
+  const viewport = useThree((state) => state.viewport);
+
+  useFrame((state) => {
+    if (movingDirRef.current) {
+      movingDirRef.current.target.position.lerp(
+        vec.set(
+          (-state.mouse.x * viewport.width) / 2,
+          (-state.mouse.y * viewport.height) / 2,
+          0
+        ),
+        0.1
+      );
+      movingDirRef.current.target.updateMatrixWorld();
+    }
+  });
+
+  const [
+    {
+      mvPosition,
+      mvIntensity,
+      mvDistance,
+      mvAngle,
+      mvAttenuation,
+      mvAPower,
+    },
+  ] = useControls("Light Settings", () => ({
+    mvPosition: {
+      value: {
+        x: 5.4,
+        y: -8.4,
+        z: 9.6,
+      },
+      min: -100,
+      max: 100,
+      step: 0.1,
+    },
+    mvIntensity: {
+      value: 5.0, //67
+      min: 0,
+      max: 10,
+      step: 0.1,
+    },
+    mvDistance: {
+      value: 28.2, //67
+      min: 0,
+      max: 100,
+      step: 0.1,
+    },
+    mvAngle: {
+      value: 1.0, //67
+      min: 0,
+      max: 10,
+      step: 0.1,
+    },
+    mvAttenuation: {
+      value: 5, //67
+      min: 0,
+      max: 10,
+      step: 0.1,
+    },
+    mvAPower: {
+      value: 4, //67
+      min: 0,
+      max: 10,
+      step: 0.1,
+    },
+  }));
 
   return (
     <group>
-      <MovingSpot depthBuffer={depthBuffer} color="#0c8cbf" position={[4.75, -15, 9]} />
-      <primitive position={[5, -10, 10]} rotation={[1.5,0,0]} object={scene} ref={ref} scale={5} {...props} />
+      <SpotLight
+        object={movingDirLight}
+        position={[mvPosition.x, mvPosition.y, mvPosition.z]}
+        intensity={mvIntensity}
+        shadow-mapSize={2048}
+        penumbra="0.9"
+        distance={mvDistance}
+        attenuation={mvAttenuation}
+        angle={mvAngle}
+        anglePower={mvAPower}
+        color="#0c8cbf"
+        decay={1}
+        castShadow
+        ref={movingDirRef}
+        shadow-bias={-0.0001}
+      />
+      <primitive
+        position={[5, -10, 10]}
+        rotation={[1.5, 0, 0]}
+        object={scene}
+        ref={ref}
+        scale={5}
+        {...props}
+        castShadow
+        receiveShadow
+      />
     </group>
   );
 }

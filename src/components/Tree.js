@@ -5,16 +5,14 @@ license: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 source: https://sketchfab.com/3d-models/floating-island-handpainted-fe1de0e8e12649518f0c3ea2b804dca8
 title: Floating_island_HandPainted
 */
-import * as THREE from "three";
-import React, { useEffect, useState, useRef } from "react";
-import { useGLTF, useAnimations, useScroll } from "@react-three/drei";
+import { Cloud, useAnimations, useGLTF, useScroll } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useSurpriseUpdate } from "../context/AboutContext";
-import { Cloud } from "@react-three/drei";
-import { useSurprise } from "../context/AboutContext";
-import Pointer from "./Pointer";
-import Chat from "./Chat";
+import React, { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
+import { useSurprise, useSurpriseUpdate } from "../context/AboutContext";
 import Bug from "./Bug";
+import Chat from "./Chat";
+import Pointer from "./Pointer";
 
 export default function Model({ ...props }) {
   const { scene, nodes, materials, animations } = useGLTF("/tree.gltf");

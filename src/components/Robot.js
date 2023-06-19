@@ -6,10 +6,10 @@ source: https://sketchfab.com/3d-models/keyboardist-robot-1510292849ab4f5d9de37a
 title: Keyboardist Robot
 */
 
-import React, { useRef, useEffect } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
-import Terminal from "./Terminal";
+import { useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import React, { useEffect, useRef } from "react";
+import Terminal from "./Terminal";
 
 export default function Model({ ...props }) {
   const robotTerminalRef = useRef();
@@ -20,23 +20,29 @@ export default function Model({ ...props }) {
     actions["Scene"].play();
   }, [actions]);
 
-  useFrame(({clock}) => {
-    robotTerminalRef.current.position.y =  Math.sin(clock.getElapsedTime()*3)/4;
+  useFrame(({ clock }) => {
+    if (robotTerminalRef.current) {
+      robotTerminalRef.current.position.y =
+        Math.sin(clock.getElapsedTime() * 3) / 4;
+    }
   });
 
   return (
     <mesh ref={robotTerminalRef}>
-      <Terminal position={[0.4, 0.2, -1.35]} rotation={[1.9, -2.45,2]} scale={[0.025, 0.02, 0.02]}/>
+      <Terminal
+        position={[0.4, 0.2, -1.35]}
+        rotation={[1.9, -2.45, 2]}
+        scale={[0.025, 0.02, 0.02]}
+      />
       <primitive
         object={scene}
         position={[-0.85, -1.5, -0.8]}
-        rotation={[0,2,0]}
+        rotation={[0, 2, 0]}
         scale={0.002}
         ref={ref}
         {...props}
       />
     </mesh>
-    
   );
 }
 

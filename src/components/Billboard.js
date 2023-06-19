@@ -5,10 +5,10 @@ license: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 source: https://sketchfab.com/models/a9e3d6e3a41344e4b4423290b863614f
 title: Billboard
 */
-import * as THREE from "three";
-import React, { useRef } from "react";
-import { useGLTF, useScroll, Image } from "@react-three/drei";
+import { Image, useGLTF, useScroll } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
+import React, { useRef } from "react";
+import * as THREE from "three";
 import Robot from "./Robot";
 
 export default function Model({ ...props }) {
@@ -23,36 +23,42 @@ export default function Model({ ...props }) {
     const secondModelInView = scroll.visible(2 / 4, 1 / 4);
     const thirdModelInView = scroll.visible(3 / 4, 1 / 4);
 
+    const currentYPosition = ref.current.position.y;
+
     if (firstModelInView) {
-      ref.current.position.y = THREE.MathUtils.damp(
-        ref.current.position.y,
-        firstModelInView ? -40 : height + 2,
-        4,
-        delta
+      const newYPosition = THREE.MathUtils.lerp(currentYPosition, -40, 0.05);
+      ref.current.position.set(
+        ref.current.position.x,
+        newYPosition,
+        ref.current.position.z
       );
     }
 
     if (secondModelInView) {
-      ref.current.position.y = THREE.MathUtils.damp(
-        ref.current.position.y,
-        secondModelInView ? -height + 2 : -40,
-        4,
-        delta
+      const newYPosition = THREE.MathUtils.lerp(
+        currentYPosition,
+        -height + 2,
+        0.05
+      );
+      ref.current.position.set(
+        ref.current.position.x,
+        newYPosition,
+        ref.current.position.z
       );
     }
 
     if (thirdModelInView) {
-      ref.current.position.y = THREE.MathUtils.damp(
-        ref.current.position.y,
-        thirdModelInView ? 40 : -height + 2,
-        4,
-        delta
+      const newYPosition = THREE.MathUtils.lerp(currentYPosition, 40, 0.01);
+      ref.current.position.set(
+        ref.current.position.x,
+        newYPosition,
+        ref.current.position.z
       );
     }
   });
 
   return (
-    <group ref={ref} position={[0, -30, 5]} scale={3}>
+    <group ref={ref} position={[0, -5, 5]} scale={3}>
       <group
         position={[-0.5, 0.5, 1]}
         rotation={[0, 2.5, 0]}
@@ -78,45 +84,3 @@ export default function Model({ ...props }) {
 }
 
 useGLTF.preload("/billboard.gltf");
-
-
-//import { useSpring, easings } from "@react-spring/three";
-
-// const [_, api] = useSpring(() => ({
-//   config: {
-//     duration: 2000,
-//     easing: easings.easeOutCubic,
-//   },
-//   from: {
-//     y: rootCamera.camera.position.y,
-//   },
-//   onStart() {
-//     bboardPosZ.current.started = true;
-//     console.log("started");
-//   },
-//   onChange({ value }) {
-//     bboardPosZ.current.y = value.y;
-//   },
-// }));
-
-// console.log('first ' + firstModelInView);
-// console.log('second ' + secondModelInView);
-// console.log('third ' + thirdModelInView);
-
-// 19, 20, -7
-// if (secondModelInView) {
-//   if (!bboardPosZ.current.started) {
-//     api.start({
-//       from: {
-//         y: state.camera.position.y,
-//       },
-//       to: { y: -20 },
-//     });
-//   } else {
-//     state.camera.position.y = bboardPosZ.current.y;
-//   }
-// }
-
-// if (firstModelInView) {
-//   bboardPosZ.current.started = false;
-// }

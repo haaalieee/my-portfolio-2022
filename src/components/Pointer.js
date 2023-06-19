@@ -6,9 +6,9 @@ source: https://sketchfab.com/models/7b62dae60f2c4443b9f499c833171ca5
 title: Arrow
 */
 
-import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import React, { useRef } from "react";
 
 export default function Model({ ...props }) {
   const ref = useRef();
@@ -17,12 +17,6 @@ export default function Model({ ...props }) {
   useFrame(({clock}) => {
     ref.current.position.y = 6.5 + (Math.sin(clock.getElapsedTime()*4)/4);
     ref.current.rotation.z = Math.sin(clock.getElapsedTime() / 10) * 3.5 * Math.PI
-
-    // if (modelInView && !bugSurprise) {
-    //   ref.current.visible = true;
-    // } else {
-    //   ref.current.visible = false;
-    // }
   });
 
   return (
@@ -31,7 +25,7 @@ export default function Model({ ...props }) {
       object={scene}
       position={[4.2, 8.5, 1.75]}
       material={materials.arrow}
-      material-metalness={1}
+      material-metalness={0.1}
       material-color={[192,192,192]}
       scale={0.08}
       rotation={[1.8, 0, Math.PI / 2]}

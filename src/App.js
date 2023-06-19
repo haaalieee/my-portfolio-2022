@@ -1,21 +1,21 @@
-import { Suspense, useRef } from "react";
-import { Canvas } from "@react-three/fiber";
 import {
-  Stars,
   OrbitControls,
   PerspectiveCamera,
-  ScrollControls,
   Scroll,
+  ScrollControls,
+  Stars,
 } from "@react-three/drei";
-import Ledger from "./components/Ledger";
-import Content from "./components/Content";
+import { Canvas } from "@react-three/fiber";
+import { Suspense, useRef } from "react";
+import { BrowserView, MobileView } from 'react-device-detect';
 import About from "./components/About";
 import Billboard from "./components/Billboard";
 import City from "./components/City";
+import Content from "./components/Content";
+import Ledger from "./components/Ledger";
 import Loader from "./components/Loader";
 import MobileContent from "./components/MobileContent";
 import { AboutProvider } from "./context/AboutContext";
-import {BrowserView, MobileView} from 'react-device-detect';
 import "./styles.css";
 
 function App() {
@@ -25,12 +25,12 @@ function App() {
   return (
     <div className="App">
       <BrowserView>
-        <Canvas className="canvas">
-          <color attach="background" args={["#11161a"]} />
+        <Canvas className="canvas" shadows>
+          <color attach="background" args={["#12161a"]} /> {/** #c5dbea */}
           <OrbitControls enablePan={false} enableZoom={false} />
           <PerspectiveCamera makeDefault position={[0, 0, 16]} fov={50}>
-            <ambientLight intensity={0.02} />
-            <pointLight intensity={1} position={[0, 20, 10]} />
+            <ambientLight intensity={1} />
+            {/* <pointLight intensity={1} position={[0, 20, 10]} />
             <spotLight
               castShadow
               intensity={1}
@@ -39,7 +39,7 @@ function App() {
               position={[10, 15, -15]}
               shadow-mapSize={[1024, 1024]}
               shadow-bias={-0.0001}
-            />
+            /> */}
           </PerspectiveCamera>
           <Suspense fallback={<Loader/>}>
             <ScrollControls pages={4}>
