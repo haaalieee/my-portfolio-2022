@@ -6,9 +6,9 @@ source: https://sketchfab.com/3d-models/chat-bubble-icon-d13ff0267030497ca91742b
 title: Chat Bubble Icon
 */
 
-import React, { useRef } from "react";
+import { animated, useSpring } from "@react-spring/three";
 import { useGLTF } from "@react-three/drei";
-import { useSpring, animated } from "@react-spring/three";
+import React, { useRef } from "react";
 import { useSurprise } from "../context/AboutContext";
 import Mail from "./Mail";
 
@@ -32,7 +32,6 @@ export default function Model({ ...props }) {
       dispose={null}
     >
       <group rotation={[-Math.PI / 2, 0, 0]}>
-        {/* <mesh geometry={nodes.mesh_0.geometry} material={materials['Material.001']} /> */}
         <Mail position={[-0.04, -0.49, 0.25]} scale={0.3} rotation={[1.75,0,0]}/>
         <mesh
           geometry={nodes.mesh_1.geometry}
@@ -40,7 +39,6 @@ export default function Model({ ...props }) {
           ref={chat}
           material-color = {'#B22222'}
         />
-        {/* <mesh geometry={nodes.mesh_2.geometry} material={materials['Material.003']} /> */}
       </group>
     </animated.mesh>
   );

@@ -21,9 +21,7 @@ export default function Model({ ...props }) {
     actions["SMALL BUGG IDLE"].play();
   }, [actions]);
 
-  useFrame(({ clock, mouse }) => {
-    // ref.current.position.z = -Math.sin(clock.getElapsedTime() / 2) * 8;
-
+  useFrame(({ clock }) => {
     ref.current.rotation.y = THREE.MathUtils.lerp(
       ref.current.rotation.y,
       Math.cos(bugClock.getElapsedTime() / 2) * 2,

@@ -30,16 +30,6 @@ function App() {
           <OrbitControls enablePan={false} enableZoom={false} />
           <PerspectiveCamera makeDefault position={[0, 0, 16]} fov={50}>
             <ambientLight intensity={1} />
-            {/* <pointLight intensity={1} position={[0, 20, 10]} />
-            <spotLight
-              castShadow
-              intensity={1}
-              angle={0.3}
-              penumbra={1}
-              position={[10, 15, -15]}
-              shadow-mapSize={[1024, 1024]}
-              shadow-bias={-0.0001}
-            /> */}
           </PerspectiveCamera>
           <Suspense fallback={<Loader/>}>
             <ScrollControls pages={4}>
