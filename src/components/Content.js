@@ -1,6 +1,6 @@
 import React from "react";
+import DownloadIcon from '../images/download-svgrepo-com.svg';
 import Ledgerline from "./Ledgerline";
-import DownloadIcon from '../images/download-svgrepo-com.svg'
 
 const Content = () => (
   <div className="content-wrapper">
@@ -22,7 +22,7 @@ const Content = () => (
     <Ledgerline text={"Contact"} />
     <p className="works-content"><span>Let's build cool stuffs<sup className="sup">*</sup> together</span></p>
     <p>Want to learn more about me? <br/> Shoot me an e-mail <a href="mailto:morenoanalie14@gmail.com">here</a>.</p>
-    <p className="download"><a href="../files/works-2022_optimized.pdf" target="_blank" className="download-btn" download><img src={DownloadIcon} alt="Download pdf" className="download-img"/>Download my portfolio</a></p>
+    <p className="download"><a href="../files/analie_works_2023-compressed.pdf" target="_blank" className="download-btn" download><img src={DownloadIcon} alt="Download pdf" className="download-img"/>Download my portfolio</a></p>
     <p className="footnote">* This site is undergoing renovations. <br/>Awesome cooler stuffs is on its way.</p>
   </div>
 );
